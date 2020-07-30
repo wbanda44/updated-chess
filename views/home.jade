@@ -1,0 +1,59 @@
+extends layout
+
+block content
+
+  #banner.jumbotron
+    .container
+      h1 Chess Club 
+      p.
+        A real-time multi-player chess app using
+        
+
+      p.
+        <a class="btn btn-primary" href="https://github.com/wbanda44/socket.io-chess">
+         CODE by BANDA WILSON
+        </a>
+
+  .container
+    .row
+      .col-sm-6
+      <div class="login">
+        h2 Start a New Game
+        form#startForm(class="start-game", action="/start", method="POST", role="form")
+          .form-group
+            label Play as
+            div
+              .btn-group(data-toggle="buttons")
+                label.btn.btn-default.active
+                  input(type="radio", name="player-color", value="white", checked="checked")
+                  | White
+                label.btn.btn-default
+                  input(type="radio", name="player-color", value="black")
+                  | Black
+          .form-group
+            label(for="playerName") Name
+            input#playerName.form-control(type="text", name="player-name", placeholder="Player 1")
+          button.btn.btn-primary(type="submit") Start Game  
+          
+          <p class="message"><a href="#">Join a Game</a></p>
+          
+      .col-sm-6
+        h2 Join an Existing Game
+        form#joinForm(class="join-game", action="/join", method="POST", role="form")
+          .form-group
+            label(for="gameID") Game ID
+            input#gameID.form-control(type="text", name="game-id")
+          .form-group
+            label(for="playerName") Name
+            input#playerName.form-control(type="text", name="player-name", placeholder="Player 2")
+          button.btn.btn-primary(type="submit") Join Game
+
+          <p class="message"><a href="#">Start a Game</a></p>
+      </div>
+  script(src="/js/jquery.min.js")
+  script(src="/js/bootstrap.min.js")
+  <script>
+  $('.message a').click(function(){
+    $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+  });
+  </script>
